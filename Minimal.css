@@ -2240,6 +2240,96 @@ table.dataview tbody > tr > td {
     --cards-columns: repeat(8, minmax(0, 1fr));
   }
 }
+.cm-formatting.cm-formatting-task.cm-property {
+  font-family: var(--font-monospace);
+  font-size: 90%;
+}
+
+input[data-task=">"]:checked,
+input[data-task="!"]:checked,
+input[data-task="-"]:checked,
+input[data-task="<"]:checked,
+input[data-task=l]:checked,
+input[data-task="*"]:checked,
+input[data-task=I]:checked,
+input[data-task=p]:checked,
+input[data-task=f]:checked,
+input[data-task=k]:checked,
+input[data-task=u]:checked,
+input[data-task=w]:checked,
+input[data-task=c]:checked,
+input[data-task=d]:checked,
+input[data-task=b]:checked,
+li[data-task=">"] > input:checked,
+li[data-task="!"] > input:checked,
+li[data-task="-"] > input:checked,
+li[data-task="<"] > input:checked,
+li[data-task=l] > input:checked,
+li[data-task="*"] > input:checked,
+li[data-task=I] > input:checked,
+li[data-task=p] > input:checked,
+li[data-task=f] > input:checked,
+li[data-task=k] > input:checked,
+li[data-task=u] > input:checked,
+li[data-task=d] > input:checked,
+li[data-task=w] > input:checked,
+li[data-task=c] > input:checked,
+li[data-task=b] > input:checked,
+li[data-task=">"] > p > input:checked,
+li[data-task="!"] > p > input:checked,
+li[data-task="-"] > p > input:checked,
+li[data-task="<"] > p > input:checked,
+li[data-task=l] > p > input:checked,
+li[data-task="*"] > p > input:checked,
+li[data-task=I] > p > input:checked,
+li[data-task=p] > p > input:checked,
+li[data-task=f] > p > input:checked,
+li[data-task=k] > p > input:checked,
+li[data-task=u] > p > input:checked,
+li[data-task=d] > p > input:checked,
+li[data-task=w] > p > input:checked,
+li[data-task=c] > p > input:checked,
+li[data-task=b] > p > input:checked {
+  --checkbox-marker-color: transparent;
+  border: none;
+  border-radius: 0;
+  background-image: none;
+  background-color: currentColor;
+  -webkit-mask-size: var(--checkbox-icon);
+  -webkit-mask-position: 50% 50%;
+}
+
+/* [/] Incomplete */
+input[data-task="/"]:checked,
+li[data-task="/"] > input:checked,
+li[data-task="/"] > p > input:checked {
+  background-image: none;
+  background-color: transparent;
+  position: relative;
+  overflow: hidden;
+}
+input[data-task="/"]:checked:after,
+li[data-task="/"] > input:checked:after,
+li[data-task="/"] > p > input:checked:after {
+  top: 0;
+  left: 0;
+  content: " ";
+  display: block;
+  position: absolute;
+  background-color: var(--background-modifier-accent);
+  width: calc(50% - 0.5px);
+  height: 100%;
+  -webkit-mask-image: none;
+}
+
+/* [!] Important */
+input[data-task="!"]:checked,
+li[data-task="!"] > input:checked,
+li[data-task="!"] > p > input:checked {
+  color: var(--color-orange);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath fill-rule='evenodd' d='M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z' clip-rule='evenodd' /%3E%3C/svg%3E");
+}
+
 /* Colorful headings */
 body.colorful-headings {
   --h1-color: var(--color-red);
