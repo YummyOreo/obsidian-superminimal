@@ -269,68 +269,70 @@ table.dataview {
 /* Card lists */
 
 .list-cards.markdown-preview-view {
-.list-bullet,
-.list-collapse-indicator,
-&.markdown-rendered.show-indentation-guide li > ul::before {
-	display:none;
-}
-div > ul {
-	display: grid;
-	gap: 0.75rem;
-	grid-template-columns: var(--cards-columns);
-	padding:0;
-	line-height: var(--line-height-tight);
-
-	.contains-task-list {
-		padding-inline-start: calc(var(--cards-padding)*1.5);
+	.list-bullet,
+	.list-collapse-indicator,
+	&.markdown-rendered.show-indentation-guide li > ul::before {
+		display:none;
 	}
+	div > ul {
+		display: grid;
+		gap: 0.75rem;
+		grid-template-columns: var(--cards-columns);
+		padding:0;
+		line-height: var(--line-height-tight);
 
-	> li {
-		background-color: var(--cards-background);
-		padding: calc(var(--cards-padding)/2);
-		border-radius: var(--radius-s);
-		border: var(--cards-border-width) solid var(--background-modifier-border);
-		overflow: hidden;
+		.contains-task-list {
+			padding-inline-start: calc(var(--cards-padding)*1.5);
+		}
 
-	}
-	.image-embed {
-		padding: 0;
-		display: block;
-		background-color: var(--background-secondary);
-		border-radius: var(--image-radius);
-		img {
-			aspect-ratio: var(--cards-aspect-ratio);
-			object-fit: var(--cards-image-fit);
-			max-height: var(--cards-image-height);
+		> li {
+			background-color: var(--cards-background);
+			padding: calc(var(--cards-padding)/2);
+			border-radius: var(--radius-s);
+			border: var(--cards-border-width) solid var(--background-modifier-border);
+			overflow: hidden;
+			margin-inline-start: 0;
+
+		}
+		.image-embed {
+			padding: 0;
+			display: block;
 			background-color: var(--background-secondary);
-			vertical-align: bottom;
+			border-radius: var(--image-radius);
+			img {
+				aspect-ratio: var(--cards-aspect-ratio);
+				object-fit: var(--cards-image-fit);
+				max-height: var(--cards-image-height);
+				background-color: var(--background-secondary);
+				vertical-align: bottom;
+			}
 		}
 	}
-}
-div > ul > li > a {
-	--link-decoration: none;
-	--link-external-decoration: none;
-	font-weight: var(--bold-weight);
-}
-div ul > li:hover {
-	border-color: var(--background-modifier-border-hover);
-}
-div ul ul {
-	display: block;
-	width: 100%;
-	color: var(--text-muted);
-	font-size: var(--font-smallest);
-	margin: calc(var(--cards-padding)/-4) 0;
-	padding: calc(var(--cards-padding)/2) 0;
-
-	ul {
-		padding-bottom: calc(var(--cards-padding)/4);
+	div > ul > li > a {
+		--link-decoration: none;
+		--link-external-decoration: none;
+		font-weight: var(--bold-weight);
 	}
-
-	> li {
+	div ul > li:hover {
+		border-color: var(--background-modifier-border-hover);
+	}
+	div ul ul {
 		display: block;
+		width: 100%;
+		color: var(--text-muted);
+		font-size: var(--font-smallest);
+		margin: calc(var(--cards-padding)/-4) 0;
+		padding: calc(var(--cards-padding)/2) 0;
+
+		ul {
+			padding-bottom: calc(var(--cards-padding)/4);
+		}
+
+		> li {
+			display: block;
+			margin-inline-start: 0;
+		}
 	}
-}
 }
 
 /* ------------------- */
@@ -338,55 +340,55 @@ div ul ul {
 
 .cards,
 .list-cards {
-&.cards-16-9 {
-	--cards-aspect-ratio: 16/9;
-}
-&.cards-1-1 {
-	--cards-aspect-ratio: 1/1;
-}
-&.cards-2-1 {
-	--cards-aspect-ratio: 2/1;
-}
-&.cards-2-3 {
-	--cards-aspect-ratio: 2/3;
-}
-&.cards-cols-1 {
-	--cards-columns: repeat(1, minmax(0, 1fr));
-}
-&.cards-cols-2 {
-	--cards-columns: repeat(2, minmax(0, 1fr));
-}
-&.cards-cover {
-	--cards-image-fit: cover;
-}
-&.cards-align-bottom table.dataview tbody > tr > td:last-child {
-	margin-top: auto;
-}
+	&.cards-16-9 {
+		--cards-aspect-ratio: 16/9;
+	}
+	&.cards-1-1 {
+		--cards-aspect-ratio: 1/1;
+	}
+	&.cards-2-1 {
+		--cards-aspect-ratio: 2/1;
+	}
+	&.cards-2-3 {
+		--cards-aspect-ratio: 2/3;
+	}
+	&.cards-cols-1 {
+		--cards-columns: repeat(1, minmax(0, 1fr));
+	}
+	&.cards-cols-2 {
+		--cards-columns: repeat(2, minmax(0, 1fr));
+	}
+	&.cards-cover {
+		--cards-image-fit: cover;
+	}
+	&.cards-align-bottom table.dataview tbody > tr > td:last-child {
+		margin-top: auto;
+	}
 }
 
 @media (max-width:400pt) {
-.cards table.dataview tbody > tr > td:not(:first-child) {
-	font-size: 80%;
-}
+	.cards table.dataview tbody > tr > td:not(:first-child) {
+		font-size: 80%;
+	}
 }
 
 @media (min-width:400pt) {
-.cards-cols-3 {
-	--cards-columns: repeat(3, minmax(0, 1fr));
-}
-.cards-cols-4 {
-	--cards-columns: repeat(4, minmax(0, 1fr));
-}
-.cards-cols-5 {
-	--cards-columns: repeat(5, minmax(0, 1fr));
-}
-.cards-cols-6 {
-	--cards-columns: repeat(6, minmax(0, 1fr));
-}
-.cards-cols-7 {
-	--cards-columns: repeat(7, minmax(0, 1fr));
-}
-.cards-cols-8 {
-	--cards-columns: repeat(8, minmax(0, 1fr));
-}
+	.cards-cols-3 {
+		--cards-columns: repeat(3, minmax(0, 1fr));
+	}
+	.cards-cols-4 {
+		--cards-columns: repeat(4, minmax(0, 1fr));
+	}
+	.cards-cols-5 {
+		--cards-columns: repeat(5, minmax(0, 1fr));
+	}
+	.cards-cols-6 {
+		--cards-columns: repeat(6, minmax(0, 1fr));
+	}
+	.cards-cols-7 {
+		--cards-columns: repeat(7, minmax(0, 1fr));
+	}
+	.cards-cols-8 {
+		--cards-columns: repeat(8, minmax(0, 1fr));
+	}
 }
