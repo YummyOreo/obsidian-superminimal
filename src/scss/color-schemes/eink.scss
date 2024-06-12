@@ -53,6 +53,10 @@
 		--tab-text-color-focused: var(--bg1);
 		--tab-text-color-focused-active-current: var(--bg1);
 	}
+	.setting-hotkey {
+		background-color: transparent;
+		border: 1px solid var(--tx1);
+	}
 	.suggestion-container {
 		border-width: 3px;
 	}
@@ -146,6 +150,9 @@
 
 .theme-light.minimal-eink-light.minimal-light-contrast .titlebar,
 .theme-light.minimal-eink-light.minimal-light-contrast.minimal-status-off .status-bar,
+.theme-light.minimal-eink-light.minimal-light-contrast .workspace-drawer.mod-left,
+.theme-light.minimal-eink-light.minimal-light-contrast .mod-left-split,
+.theme-light.minimal-eink-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
 .theme-light.minimal-eink-light.minimal-light-contrast .theme-dark,
 .theme-dark.minimal-eink-dark {
 	--base-h:0;

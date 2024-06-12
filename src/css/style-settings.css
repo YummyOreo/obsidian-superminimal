@@ -1403,6 +1403,31 @@ settings:
 				label: Single tab only
 				value: tab-names-single
 	-
+		id: vault-profile-display
+		title: Vault profile position
+		type: class-select
+		allowEmpty: false
+		default: vault-profile-default
+		options:
+			-
+				label: Bottom
+				value: vault-profile-default
+			-
+				label: Top
+				value: vault-profile-top
+	-
+		id: hide-help
+		title: Hide help button
+		description: 
+		type: class-toggle
+		default: false
+	-
+		id: hide-settings
+		title: Hide settings button
+		description: 
+		type: class-toggle
+		default: false
+	-
 		id: mobile-left-sidebar-width
 		title: Mobile left sidebar width
 		description: Maximum width for pinned left sidebar on mobile
@@ -1434,11 +1459,14 @@ settings:
 				label: Default
 				value: ribbon-hidden
 			-
-				label: Bottom left hover (horizontal)
-				value: ribbon-bottom-left-hover
+				label: Expand (vertical)
+				value: ribbon-vertical-expand
 			-
-				label: Bottom left hover (vertical)
+				label: Hover (vertical)
 				value: ribbon-bottom-left-hover-vertical
+			-
+				label: Hover (horizontal)
+				value: ribbon-bottom-left-hover	
 	-
 		id: tables
 		title: Tables
@@ -1773,12 +1801,12 @@ settings:
 		default-light: '#'
 		default-dark: '#'
 	-
-		id: bold-weight
+		id: bold-modifier
 		title: Bold text weight
 		type: variable-number-slider
-		default: 600
+		default: 200
 		min: 100
-		max: 900
+		max: 500
 		step: 100
 	-
 		id: p-spacing
