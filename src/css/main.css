@@ -17,8 +17,6 @@ body {
   --font-ui-smaller: 11px;
   /* Font weights */
   --normal-weight: 400;
-  --bold-weight: 600;
-  --link-weight: inherit;
   /* Headings */
   --inline-title-margin-bottom: 1rem;
   --h1-size: 1.125em;
@@ -407,6 +405,7 @@ body .excalidraw {
   --background-modifier-border-focus: var(--ui3);
   --background-modifier-border-hover: var(--ui2);
   --background-modifier-border: var(--ui1);
+  --mobile-sidebar-background: var(--bg1);
   --background-modifier-form-field-highlighted: var(--bg1);
   --background-modifier-form-field: var(--bg1);
   --background-modifier-success: var(--color-green);
@@ -871,6 +870,58 @@ figure {
   --hider-ribbon-display: flex;
 }
 
+body.ribbon-vertical-expand:not(.is-mobile) {
+  --ribbon-width: 0px;
+}
+body.ribbon-vertical-expand:not(.is-mobile) .workspace-ribbon.mod-left {
+  width: 10px;
+  flex-basis: 10px;
+  opacity: 0;
+  position: fixed;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  transition: all 0.1s linear 0.6s;
+}
+body.ribbon-vertical-expand:not(.is-mobile) .workspace-ribbon.mod-left .side-dock-actions {
+  transition: opacity 0.1s linear 0.3s;
+}
+body.ribbon-vertical-expand:not(.is-mobile) .workspace-ribbon.mod-left:hover {
+  width: 44px;
+  opacity: 1;
+  flex-basis: 44px;
+  transition: opacity 0.1s linear 0.1s;
+}
+body.ribbon-vertical-expand:not(.is-mobile) .workspace-ribbon.mod-left:hover .side-dock-actions {
+  opacity: 1;
+  transition: opacity 0.2s linear 0.2s;
+}
+body.ribbon-vertical-expand:not(.is-mobile).labeled-nav .workspace-ribbon.mod-left ~ .mod-left-split .workspace-tab-header-container {
+  margin-left: 0;
+  transition: all 0.1s linear 0.6s;
+}
+body.ribbon-vertical-expand:not(.is-mobile).labeled-nav .workspace-ribbon.mod-left:hover ~ .mod-left-split .workspace-tab-header-container {
+  margin-left: 44px;
+  transition: all 0.1s linear;
+}
+body.ribbon-vertical-expand:not(.is-mobile) .workspace-ribbon.mod-left ~ .mod-left-split .workspace-tab-container {
+  padding-left: 0px;
+  transition: all 0.1s linear 0.6s;
+}
+body.ribbon-vertical-expand:not(.is-mobile) .workspace-ribbon.mod-left ~ .mod-left-split .workspace-sidedock-vault-profile {
+  transition: all 0.1s linear 0.6s;
+}
+body.ribbon-vertical-expand:not(.is-mobile) .workspace-ribbon.mod-left:hover ~ .mod-left-split .workspace-tab-container {
+  padding-left: 44px;
+  transition: all 0.1s linear;
+}
+body.ribbon-vertical-expand:not(.is-mobile) .workspace-ribbon.mod-left:hover ~ .mod-left-split .workspace-sidedock-vault-profile {
+  padding-left: 52px;
+  transition: all 0.1s linear;
+}
+
 .hider-ribbon .workspace-ribbon.mod-left:before,
 .ribbon-bottom-left-hover-vertical .workspace-ribbon.mod-left:before,
 .ribbon-bottom-left-hover .workspace-ribbon.mod-left:before {
@@ -1129,6 +1180,68 @@ body.is-focused {
 
 .mod-root .workspace-tab-header-status-icon {
   color: var(--text-muted);
+}
+
+.is-collapsed .workspace-sidedock-vault-profile {
+  opacity: 0;
+}
+
+body:not(.is-mobile).hide-help .workspace-drawer-vault-actions .clickable-icon:first-child {
+  display: none;
+}
+
+body:not(.is-mobile).hide-settings .workspace-drawer-vault-actions .clickable-icon:last-child {
+  display: none;
+}
+
+body:not(.is-mobile).hide-help.hide-settings .workspace-drawer-vault-actions {
+  display: none !important;
+}
+
+body:not(.is-grabbing):not(.is-fullscreen).labeled-nav.is-hidden-frameless.vault-profile-top .mod-left-split .mod-top .workspace-tab-header-container {
+  -webkit-app-region: no-drag;
+}
+body:not(.is-grabbing):not(.is-fullscreen).labeled-nav.is-hidden-frameless.vault-profile-top .mod-left-split .mod-top .workspace-tab-header-container:before {
+  position: absolute;
+  top: 0;
+  content: "";
+  height: var(--header-height);
+  width: 100%;
+  -webkit-app-region: drag;
+}
+
+body:not(.is-mobile):not(.labeled-nav).vault-profile-top .workspace-split.mod-left-split .mod-top .workspace-tab-container {
+  margin-top: calc(var(--header-height) + 8px);
+}
+body:not(.is-mobile):not(.labeled-nav).vault-profile-top .workspace-split.mod-left-split .workspace-sidedock-vault-profile {
+  -webkit-app-region: no-drag;
+  position: absolute;
+  top: var(--header-height);
+  z-index: 6;
+  width: 100%;
+  border-top: 0;
+  border-bottom: 1px solid var(--background-modifier-border);
+}
+body:not(.is-mobile):not(.labeled-nav).vault-profile-top .workspace-split.mod-left-split .workspace-sidedock-vault-profile .workspace-drawer-vault-switcher {
+  padding-left: var(--size-4-2);
+}
+
+body:not(.is-mobile).labeled-nav.vault-profile-top .workspace-split.mod-left-split .workspace-sidedock-vault-profile {
+  -webkit-app-region: no-drag;
+  position: absolute;
+  top: var(--labeled-nav-top-margin);
+  z-index: 6;
+  width: 100%;
+  background-color: transparent;
+  border-top: 0;
+  border-bottom: 1px solid var(--background-modifier-border);
+}
+body:not(.is-mobile).labeled-nav.vault-profile-top .workspace-split.mod-left-split .workspace-sidedock-vault-profile .workspace-drawer-vault-switcher {
+  padding-left: var(--size-4-2);
+}
+
+.vault-profile-top .workspace-tab-header-container-inner {
+  --labeled-nav-top-margin: 84px;
 }
 
 /* Components */
@@ -1707,6 +1820,10 @@ body {
 .cm-embed-block.cm-table-widget.markdown-rendered {
   margin-top: -8px !important;
   padding: var(--table-drag-padding);
+  overscroll-behavior-x: none;
+}
+.is-mobile .cm-embed-block.cm-table-widget.markdown-rendered {
+  padding-bottom: 40px;
 }
 
 /* Override Sortable plugin */
@@ -2553,6 +2670,10 @@ body {
 }
 
 /* File browser */
+.hider-file-nav-header:not(.labeled-nav) .nav-files-container {
+  padding-top: var(--size-4-3);
+}
+
 .is-mobile .nav-folder.mod-root > .nav-folder-title .nav-folder-title-content {
   display: none;
 }
@@ -3326,6 +3447,9 @@ body .modal .dtchooser .reminder-calendar .calendar-date.is-selected {
 
 .theme-light.minimal-atom-light.minimal-light-contrast .titlebar,
 .theme-light.minimal-atom-light.minimal-light-contrast.minimal-status-off .status-bar,
+.theme-light.minimal-atom-light.minimal-light-contrast .workspace-drawer.mod-left,
+.theme-light.minimal-atom-light.minimal-light-contrast .mod-left-split,
+.theme-light.minimal-atom-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
 .theme-light.minimal-atom-light.minimal-light-contrast .theme-dark,
 .theme-dark.minimal-atom-dark {
   --base-h:220;
@@ -3417,6 +3541,9 @@ https://github.com/ayu-theme/ayu-colors
 
 .theme-light.minimal-ayu-light.minimal-light-contrast .titlebar,
 .theme-light.minimal-ayu-light.minimal-light-contrast.minimal-status-off .status-bar,
+.theme-light.minimal-ayu-light.minimal-light-contrast .workspace-drawer.mod-left,
+.theme-light.minimal-ayu-light.minimal-light-contrast .mod-left-split,
+.theme-light.minimal-ayu-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
 .theme-light.minimal-ayu-light.minimal-light-contrast .theme-dark,
 .theme-dark.minimal-ayu-dark {
   --base-h:222;
@@ -3522,6 +3649,9 @@ https://github.com/catppuccin/catppuccin
 
 .theme-light.minimal-catppuccin-light.minimal-light-contrast .titlebar,
 .theme-light.minimal-catppuccin-light.minimal-light-contrast.minimal-status-off .status-bar,
+.theme-light.minimal-catppuccin-light.minimal-light-contrast .workspace-drawer.mod-left,
+.theme-light.minimal-catppuccin-light.minimal-light-contrast .mod-left-split,
+.theme-light.minimal-catppuccin-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
 .theme-light.minimal-catppuccin-light.minimal-light-contrast .theme-dark,
 .theme-dark.minimal-catppuccin-dark {
   --base-h: 229;
@@ -3576,6 +3706,9 @@ https://github.com/dracula/dracula-theme
 
 .theme-light.minimal-dracula-light.minimal-light-contrast .titlebar,
 .theme-light.minimal-dracula-light.minimal-light-contrast.minimal-status-off .status-bar,
+.theme-light.minimal-dracula-light.minimal-light-contrast .workspace-drawer.mod-left,
+.theme-light.minimal-dracula-light.minimal-light-contrast .mod-left-split,
+.theme-light.minimal-dracula-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
 .theme-light.minimal-dracula-light.minimal-light-contrast .theme-dark,
 .theme-dark.minimal-dracula-dark {
   --base-h: 232;
@@ -3654,6 +3787,11 @@ https://github.com/dracula/dracula-theme
   --minimal-tab-text-color-active: var(--bg1);
   --tab-text-color-focused: var(--bg1);
   --tab-text-color-focused-active-current: var(--bg1);
+}
+.theme-light.minimal-eink-light .setting-hotkey,
+.theme-dark.minimal-eink-dark .setting-hotkey {
+  background-color: transparent;
+  border: 1px solid var(--tx1);
 }
 .theme-light.minimal-eink-light .suggestion-container,
 .theme-dark.minimal-eink-dark .suggestion-container {
@@ -3765,6 +3903,9 @@ https://github.com/dracula/dracula-theme
 
 .theme-light.minimal-eink-light.minimal-light-contrast .titlebar,
 .theme-light.minimal-eink-light.minimal-light-contrast.minimal-status-off .status-bar,
+.theme-light.minimal-eink-light.minimal-light-contrast .workspace-drawer.mod-left,
+.theme-light.minimal-eink-light.minimal-light-contrast .mod-left-split,
+.theme-light.minimal-eink-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
 .theme-light.minimal-eink-light.minimal-light-contrast .theme-dark,
 .theme-dark.minimal-eink-dark {
   --base-h:0;
@@ -3909,6 +4050,9 @@ https://github.com/sainnhe/everforest
 
 .theme-light.minimal-everforest-light.minimal-light-contrast .titlebar,
 .theme-light.minimal-everforest-light.minimal-light-contrast.minimal-status-off .status-bar,
+.theme-light.minimal-everforest-light.minimal-light-contrast .workspace-drawer.mod-left,
+.theme-light.minimal-everforest-light.minimal-light-contrast .mod-left-split,
+.theme-light.minimal-everforest-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
 .theme-light.minimal-everforest-light.minimal-light-contrast .theme-dark,
 .theme-dark.minimal-everforest-dark {
   --base-h:203;
@@ -4005,6 +4149,9 @@ https://stephango.com/flexoki
 
 .theme-light.minimal-flexoki-light.minimal-light-contrast .titlebar,
 .theme-light.minimal-flexoki-light.minimal-light-contrast.minimal-status-off .status-bar,
+.theme-light.minimal-flexoki-light.minimal-light-contrast .workspace-drawer.mod-left,
+.theme-light.minimal-flexoki-light.minimal-light-contrast .mod-left-split,
+.theme-light.minimal-flexoki-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
 .theme-light.minimal-flexoki-light.minimal-light-contrast .theme-dark,
 .theme-dark.minimal-flexoki-dark {
   --base-h: 360;
@@ -4086,6 +4233,9 @@ https://github.com/morhetz/gruvbox
 
 .theme-light.minimal-gruvbox-light.minimal-light-contrast .titlebar,
 .theme-light.minimal-gruvbox-light.minimal-light-contrast.minimal-status-off .status-bar,
+.theme-light.minimal-gruvbox-light.minimal-light-contrast .workspace-drawer.mod-left,
+.theme-light.minimal-gruvbox-light.minimal-light-contrast .mod-left-split,
+.theme-light.minimal-gruvbox-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
 .theme-light.minimal-gruvbox-light.minimal-light-contrast .theme-dark,
 .theme-dark.minimal-gruvbox-dark {
   --accent-h:24;
@@ -4155,6 +4305,9 @@ https://github.com/morhetz/gruvbox
 
 .theme-light.minimal-macos-light.minimal-light-contrast .titlebar,
 .theme-light.minimal-macos-light.minimal-light-contrast.minimal-status-off .status-bar,
+.theme-light.minimal-macos-light.minimal-light-contrast .workspace-drawer.mod-left,
+.theme-light.minimal-macos-light.minimal-light-contrast .mod-left-split,
+.theme-light.minimal-macos-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
 .theme-light.minimal-macos-light.minimal-light-contrast .theme-dark,
 .theme-dark.minimal-macos-dark {
   --base-h:106;
@@ -4230,6 +4383,9 @@ https://github.com/nordtheme/nord
 
 .theme-light.minimal-nord-light.minimal-light-contrast .titlebar,
 .theme-light.minimal-nord-light.minimal-light-contrast.minimal-status-off .status-bar,
+.theme-light.minimal-nord-light.minimal-light-contrast .workspace-drawer.mod-left,
+.theme-light.minimal-nord-light.minimal-light-contrast .mod-left-split,
+.theme-light.minimal-nord-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
 .theme-light.minimal-nord-light.minimal-light-contrast .theme-dark,
 .theme-dark.minimal-nord-dark {
   --base-h:220;
@@ -4272,11 +4428,13 @@ https://github.com/nordtheme/nord
   --tx2:#72706c;
   --tx3:#aaa9a5;
   --hl1:rgba(131,201,229,0.3);
-  --link-weight:500;
 }
 
 .theme-light.minimal-notion-light.minimal-light-contrast .titlebar,
 .theme-light.minimal-notion-light.minimal-light-contrast.minimal-status-off .status-bar,
+.theme-light.minimal-notion-light.minimal-light-contrast .workspace-drawer.mod-left,
+.theme-light.minimal-notion-light.minimal-light-contrast .mod-left-split,
+.theme-light.minimal-notion-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
 .theme-light.minimal-notion-light.minimal-light-contrast .theme-dark,
 .theme-dark.minimal-notion-dark {
   --base-h:203;
@@ -4295,7 +4453,6 @@ https://github.com/nordtheme/nord
   --tx2:#909295;
   --tx3:#585d5f;
   --hl1:rgba(57,134,164,0.3);
-  --link-weight:500;
 }
 
 .theme-dark.minimal-notion-dark.minimal-dark-black {
@@ -4369,6 +4526,9 @@ https://github.com/rose-pine/rose-pine-theme
 
 .theme-light.minimal-rose-pine-light.minimal-light-contrast .titlebar,
 .theme-light.minimal-rose-pine-light.minimal-light-contrast.minimal-status-off .status-bar,
+.theme-light.minimal-rose-pine-light.minimal-light-contrast .workspace-drawer.mod-left,
+.theme-light.minimal-rose-pine-light.minimal-light-contrast .mod-left-split,
+.theme-light.minimal-rose-pine-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
 .theme-light.minimal-rose-pine-light.minimal-light-contrast .theme-dark,
 .theme-dark.minimal-rose-pine-dark {
   --base-h: 247;
@@ -4446,6 +4606,9 @@ https://ethanschoonover.com/solarized/
 
 .theme-light.minimal-solarized-light.minimal-light-contrast .titlebar,
 .theme-light.minimal-solarized-light.minimal-light-contrast.minimal-status-off .status-bar,
+.theme-light.minimal-solarized-light.minimal-light-contrast .workspace-drawer.mod-left,
+.theme-light.minimal-solarized-light.minimal-light-contrast .mod-left-split,
+.theme-light.minimal-solarized-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
 .theme-light.minimal-solarized-light.minimal-light-contrast .theme-dark,
 .theme-dark.minimal-solarized-dark {
   --accent-h: 205;
@@ -4528,6 +4691,9 @@ https://ethanschoonover.com/solarized/
 
 .theme-light.minimal-things-light.minimal-light-contrast .titlebar,
 .theme-light.minimal-things-light.minimal-light-contrast.minimal-status-off .status-bar,
+.theme-light.minimal-things-light.minimal-light-contrast .workspace-drawer.mod-left,
+.theme-light.minimal-things-light.minimal-light-contrast .mod-left-split,
+.theme-light.minimal-things-light.minimal-light-contrast .workspace-ribbon.mod-left:not(.is-collapsed),
 .theme-light.minimal-things-light.minimal-light-contrast .theme-dark,
 .theme-dark.minimal-things-dark {
   --base-h:218;
